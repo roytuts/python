@@ -1,0 +1,27 @@
+<doctype html>
+<title>User Login - Python Flask</title>
+<h2>Login</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+<form method="post" action="/submit">
+    <dl>
+		<p>
+			<input name="inputEmail" value="" type="text" placeholder="Email" required>
+		</p>
+		<p>
+			<input name="inputPassword" value="" type="password" placeholder="Password" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
