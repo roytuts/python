@@ -1,0 +1,1 @@
+You can read tutorial https://www.roytuts.com/a-guide-to-write-word-file-using-python/
