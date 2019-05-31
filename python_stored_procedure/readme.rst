@@ -1,0 +1,1 @@
+You can read tutorial https://www.roytuts.com/call-stored-procedure-using-python/
