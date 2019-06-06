@@ -30,8 +30,9 @@ def upload_file():
 			file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			flash('File(s) successfully uploaded')
 			return redirect('/')
-		else
+		else:
 			flash('Allowed file types are txt, pdf, png, jpg, jpeg, gif')
+			return redirect(request.url)
 
 if __name__ == "__main__":
     app.run()
