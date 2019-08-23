@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Python Flask Session Management</title>
+</head>
+<body>
+	<div>
+		{% if 'msg' in session %}
+			{{ session['msg'] }}
+		{% endif %}
+	</div>
+</body>
+</html>
