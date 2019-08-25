@@ -1,0 +1,1 @@
+You can read tutorial https://www.roytuts.com/simple-shopping-cart-using-python-flask-mysql/
