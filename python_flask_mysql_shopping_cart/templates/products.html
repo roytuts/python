@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Python Flask Simple Shopping Cart</title>
+	<link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div>
+		{% with messages = get_flashed_messages() %}
+		  {% if messages %}
+			<ul class=flashes>
+			{% for message in messages %}
+			  <li>{{ message }}</li>
+			{% endfor %}
+			</ul>
+		  {% endif %}
+		{% endwith %}
+	</div>
+
+	<div id="shopping-cart">
+		<div class="txt-heading">Shopping Cart</div>		
+		{% if 'cart_item' in session %}
+			<a id="btnEmpty" href="{{ url_for('.empty_cart') }}">Empty Cart</a>
+			<table class="tbl-cart" cellpadding="10" cellspacing="1">
+			<tbody>
+				<tr>
+					<th style="text-align:left;">Name</th>
+					<th style="text-align:left;">Code</th>
+					<th style="text-align:right;" width="5%">Quantity</th>
+					<th style="text-align:right;" width="10%">Unit Price</th>
+					<th style="text-align:right;" width="10%">Price</th>
+					<th style="text-align:center;" width="5%">Remove</th>
+				</tr>
+				{% for key, val in session['cart_item'].items() %}
+					{% set quantity = session['cart_item'][key]['quantity'] %}
+					{% set price = session['cart_item'][key]['price'] %}
+					{% set item_price = session['cart_item'][key]['total_price'] %}					
+					<tr>
+						<td><img src="/static/images/{{ session['cart_item'][key]['image'] }}" class="cart-item-image" />{{ session['cart_item'][key]['name'] }}</td>
+						<td>{{ session['cart_item'][key]['code'] }}</td>
+						<td style="text-align:right;">{{ quantity }}</td>
+						<td  style="text-align:right;">&#8377; {{ price }}</td>
+						<td  style="text-align:right;">&#8377; {{ item_price }}</td>
+						<td style="text-align:center;">
+							<a href="{{ url_for('.delete_product', code=session['cart_item'][key]['code']) }}" class="btnRemoveAction">
+								<img src="/static/images/icon-delete.png" alt="Remove Item" />
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td colspan="2" align="right">Total:</td>
+					<td align="right">{{ session['all_total_quantity'] }}</td>
+					<td align="right" colspan="2"><strong>&#8377; {{ session['all_total_price'] }}</strong></td>
+					<td></td>
+				</tr>
+			</tbody>
+			</table>
+		{% else: %}
+			<div class="no-records">Your Cart is Empty</div>
+		{% endif %}
+	</div>
+
+	<div id="product-grid">
+		<div class="txt-heading">Products</div>
+
+		{% for product in products %}
+
+			<div class="product-item">
+				<form method="post" action="/add">
+					<div class="product-image"><img src="/static/images/{{ product.image }}"></div>
+					<div class="product-tile-footer">
+						<div class="product-title">{{ product.name }}</div>
+						<div class="product-price">&#8377; {{ product.price }}</div>
+						<div class="cart-action">
+							<input type="hidden" name="code" value="{{ product.code }}"/>
+							<input type="text" class="product-quantity" name="quantity" value="1" size="2" />
+							<input type="submit" value="Add to Cart" class="btnAddAction" />
+						</div>
+					</div>
+				</form>
+			</div>
+
+		{% endfor %}
+	
+	</div>
+</body>
+</html>
