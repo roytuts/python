@@ -29,7 +29,7 @@ def upload_file():
 		return resp
 	else:
 		resp = jsonify({'message' : 'Allowed file types are txt, pdf, png, jpg, jpeg, gif'})
-		resp.status_code = 500
+		resp.status_code = 400
 		return resp
 
 if __name__ == "__main__":
