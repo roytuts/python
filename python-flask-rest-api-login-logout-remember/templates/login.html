@@ -1,0 +1,30 @@
+<doctype html>
+<title>User Login with remember me - Python Flask</title>
+<h2>Login</h2>
+<p>
+	{% with messages = get_flashed_messages() %}
+	  {% if messages %}
+		<ul class=flashes>
+		{% for message in messages %}
+		  <li>{{ message }}</li>
+		{% endfor %}
+		</ul>
+	  {% endif %}
+	{% endwith %}
+</p>
+<form method="post" action="/submit">
+    <dl>
+		<p>
+			<input name="inputEmail" value="{% if 'email' in request.cookies %} {{ request.cookies.get('email') }} {% endif %}" type="text" placeholder="Email" required>
+		</p>
+		<p>
+			<input name="inputPassword" value="{% if 'pwd' in request.cookies %} {{ request.cookies.get('pwd') }} {% endif %}" type="password" placeholder="Password" autocomplete="off" required>
+		</p>
+		<p>
+			<input name="inputRemember" checked="{% if 'rem' in request.cookies %} {{ request.cookies.get('rem') }} {% endif %}" type="checkbox" autocomplete="off">Remember Me</input>
+		</p>
+    </dl>
+    <p>
+		<input type="submit" value="Submit">
+	</p>
+</form>
