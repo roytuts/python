@@ -1,0 +1,31 @@
+{% extends "parent.html" %}
+{% block title %}Contact Us{% endblock %}
+{% block head %}
+	<link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}"/>
+{% endblock %}
+{% block content %}
+	<script>
+		function fnSubmit(){
+			document.getElementById("SuccessMsg").style.display = "block";
+			return false;
+		}
+	</script>
+
+	<div style="text-align:center">
+		<h1>Contact Us</h1>
+		<p>Use the form below to leave us a message:</p>
+	</div>
+
+	<div class="row">
+		<div class="column">
+		</div>
+		<div class="column">
+			<label for="fname">Name</label>
+			<input type="text" id="name" name="name" placeholder="Your name..">
+			<label for="message">Your Message</label>
+			<textarea id="message" name="message" placeholder="Write something.." style="height:100px"></textarea>
+			<label id="SuccessMsg" style="color:green; display:none"><strong>Form Submitted Successfully!</strong></label>
+			<input type="submit" value="Submit" onclick="javascript:fnSubmit()" />
+		</div>
+	</div>
+{% endblock %}

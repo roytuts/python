@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Parent and Child Templates in Flask - {% block title %}{% endblock %}</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link type="text/css"  rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+		<script type="text/javascript" href="{{ url_for('static', filename='js/sample.js') }}"></script>
+		{% block head %}{% endblock %}
+	</head>
+<body>
+
+	{% include "snippets/header.html" %}
+
+	<div class="row">
+	
+		{% include "snippets/left.html" %}
+		
+		<div class="col-s-6">
+		
+			{% block content %}{% endblock %}
+		
+		</div>
+		
+	</div>
+	
+	{% include "snippets/footer.html" %}
+	
+</body>
+</html>
