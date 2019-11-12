@@ -4,7 +4,16 @@ from db import mysql
 from flask import request, session
 
 def track_visitor():
-	if config.is_tracking_allowed():
+	if not config.is_tracking_allowed():
+		return
+	else:		
+		ip_address = request.remote_addr
+		requested_url = request.url
+		referer_page = request.referrer
+		page_name = request.path
+		query_string = request.query_string
+		user_agent = request.user_agent.string
+				
 		if config.track_session():
 			log_id = session['log_id'] if 'log_id' in session else 0
 			no_of_visits = session['no_of_visits']
@@ -12,47 +21,9 @@ def track_visitor():
 			previous_page = session['current_page'] if 'current_page' in session else ''
 			
 			if previous_page != current_page:
-				ip_address = request.remote_addr
-				requested_url = request.url
-				referer_page = request.referrer
-				page_name = request.path
-				query_string = request.query_string
-				user_agent = request.user_agent.string
 				
-				sql = "INSERT INTO visits_log(no_of_visits, ip_address, requested_url, referer_page, page_name, query_string, user_agent) VALUES(%s, %s, %s, %s, %s, %s, %s)"
-				
-				data = (no_of_visits, ip_address, requested_url, referer_page, page_name, query_string, user_agent,)
-				
-				conn = None
-				cursor = None
-				
-				try:				
-					conn = mysql.connect()
-					cursor = conn.cursor()
-					
-					cursor.execute(sql, data)
-					
-					conn.commit()
-					
-					session.modified = True
-					session['current_page'] = requested_url
-				except Exception as e:
-					print(e)
-				finally:
-					cursor.close()
-					conn.close()
-		else:
-			ip_address = request.remote_addr
-			requested_url = request.url
-			referer_page = request.referrer
-			page_name = request.path
-			query_string = request.query_string
-			user_agent = request.user_agent.string
-			
-			sql = "INSERT INTO visits_log(ip_address, requested_url, referer_page, page_name, query_string, user_agent) VALUES(%s, %s, %s, %s, %s, %s)"
-				
-			data = (ip_address, requested_url, referer_page, page_name, query_string, user_agent,)
-			
+				log_visitor(ip_address, requested_url, referer_page, page_name, query_string, user_agent, no_of_visits)
+		else:			
 			conn = None
 			cursor = None
 			
@@ -62,18 +33,11 @@ def track_visitor():
 				conn = mysql.connect()
 				cursor = conn.cursor()
 				
-				cursor.execute(sql, data)
+				log_id = log_visitor(ip_address, requested_url, referer_page, page_name, query_string, user_agent)
 				
-				conn.commit()
+				#print('log_id', log_id)
 				
-				log_id = cursor.lastrowid
-				
-				print('log_id', log_id)
-				
-				if log_id > 0:
-					session['current_page'] = requested_url
-					session['track_session'] = True
-				
+				if log_id > 0:				
 					sql = 'select max(no_of_visits) as next from visits_log limit 1'
 					
 					conn = mysql.connect()
@@ -95,9 +59,9 @@ def track_visitor():
 					
 					conn.commit()
 					
+					session['track_session'] = True
 					session['no_of_visits'] = count
-					session['current_page'] = requested_url
-				
+					session['current_page'] = requested_url				
 				else:
 					session['track_session'] = False
 			except Exception as e:
@@ -106,3 +70,34 @@ def track_visitor():
 			finally:
 				cursor.close()
 				conn.close()
+				
+def log_visitor(ip_address, requested_url, referer_page, page_name, query_string, user_agent, no_of_visits=None):
+	sql = None
+	data = None
+	conn = None
+	cursor = None
+	log_id = 0
+	
+	if no_of_visits == None:
+		sql = "INSERT INTO visits_log(no_of_visits, ip_address, requested_url, referer_page, page_name, query_string, user_agent) VALUES(%s, %s, %s, %s, %s, %s, %s)"
+		data = (no_of_visits, ip_address, requested_url, referer_page, page_name, query_string, user_agent,)
+	else:
+		sql = "INSERT INTO visits_log(ip_address, requested_url, referer_page, page_name, query_string, user_agent) VALUES(%s, %s, %s, %s, %s, %s)"
+		data = (ip_address, requested_url, referer_page, page_name, query_string, user_agent,)
+	
+	try:				
+		conn = mysql.connect()
+		cursor = conn.cursor()
+		
+		cursor.execute(sql, data)
+		
+		conn.commit()
+		
+		log_id = cursor.lastrowid
+		
+		return log_id
+	except Exception as e:
+		print(e)
+	finally:
+		cursor.close()
+		conn.close()
