@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>jQuery AJAX Login Logout using Python Flask MySQL</title>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/auth.js') }}"/>
+		<script type="text/javascript">
+			$SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+		</script>
+	</head>
+<body>
+
+	<div>
+		<ul style="list-style: none; float: left;">
+			<li><a href="{{ url_for('.home_page') }}">Home</a></li>
+			<div id="sign">
+				<li><a href="#">Sign Up</a></li>
+				<li><a href="{{ url_for('.login_page') }}">Login</a></li>
+			</div>
+			<div id="logoff" style="display: none;">
+				<li><a href="#" id="logout">Log Off</a></li>
+			</div>
+		</ul>
+	</div>
+
+	<div style="width: 500px; margin: auto;">
+	
+		<div id="msg"></div>
+		<div style="clear: both;"></div>
+		<div id="loginform">
+			<h2>Login</h2>
+			<dl>
+				<p>
+					<input id="email" value="" type="text" placeholder="Email" required>
+				</p>
+				<p>
+					<input id="password" value="" type="password" placeholder="Password" autocomplete="off" required>
+				</p>
+			</dl>
+			<p>
+				<input type="button" id="loginSubmit" value="Submit">
+			</p>
+		</div>
+		
+	</div>
+	
+</body>
+</html>
