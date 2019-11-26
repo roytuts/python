@@ -22,7 +22,7 @@ document.add_paragraph(
     'first item in ordered list', style='List Number'
 )
 
-document.add_picture('C:\\Users\\soumi\\Pictures\\application.jpg', width=Inches(1.25))
+document.add_picture('write-word-using-python.jpg', width=Inches(1.25))
 
 
 recordset = [
@@ -42,7 +42,7 @@ recordset = [
         "desc": "New item"
     }
 ]
-print(recordset[0]['id'])
+#print(recordset[0]['id'])
 table = document.add_table(rows=1, cols=3)
 hdr_cells = table.rows[0].cells
 hdr_cells[0].text = 'Id'
@@ -51,9 +51,9 @@ hdr_cells[2].text = 'Description'
 for item in recordset:
 	#print(item)
 	row_cells = table.add_row().cells
-	row_cells[0].text = item['id']
-	row_cells[1].text = item['qty']
-	row_cells[2].text = item['desc']
+	row_cells[0].text = str(item['id'])
+	row_cells[1].text = str(item['qty'])
+	row_cells[2].text = str(item['desc'])
 
 document.add_page_break()
 
