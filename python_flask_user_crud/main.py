@@ -3,7 +3,7 @@ from app import app
 from tables import Results
 from db_config import mysql
 from flask import flash, render_template, request, redirect
-from werkzeug import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route('/new_user')
 def add_user_view():
@@ -11,6 +11,8 @@ def add_user_view():
 		
 @app.route('/add', methods=['POST'])
 def add_user():
+	conn = None
+	cursor = None
 	try:		
 		_name = request.form['inputName']
 		_email = request.form['inputEmail']
@@ -38,6 +40,8 @@ def add_user():
 		
 @app.route('/')
 def users():
+	conn = None
+	cursor = None
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
@@ -54,6 +58,8 @@ def users():
 
 @app.route('/edit/<int:id>')
 def edit_view(id):
+	conn = None
+	cursor = None
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor(pymysql.cursors.DictCursor)
@@ -71,6 +77,8 @@ def edit_view(id):
 
 @app.route('/update', methods=['POST'])
 def update_user():
+	conn = None
+	cursor = None
 	try:		
 		_name = request.form['inputName']
 		_email = request.form['inputEmail']
@@ -100,6 +108,8 @@ def update_user():
 		
 @app.route('/delete/<int:id>')
 def delete_user(id):
+	conn = None
+	cursor = None
 	try:
 		conn = mysql.connect()
 		cursor = conn.cursor()
