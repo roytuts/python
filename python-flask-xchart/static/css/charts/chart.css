@@ -1,0 +1,39 @@
+/*----------------------------
+        The Chart
+-----------------------------*/
+
+
+#placeholder {
+    width: 790px;
+    border: 1px solid #CDCDCD;
+    padding: 20px;
+    border-radius: 3px;
+    background-color: white;
+    margin-bottom: 15px;
+    position: relative;
+    box-shadow: 1px 1px 2px #EEE, 0 -3px 5px #F3F3F3 inset;
+}
+
+/*#content {
+    margin: 0px auto;
+    padding: 45px;
+    position: relative;
+    width: 590px;
+}*/
+
+#chart{
+    width: 780px;
+    height: 400px;
+}
+
+.ex-tooltip{
+    position: absolute;
+    background: #EEE;
+    border-radius: 3px;
+    border-radius: 3px;
+    padding: 5px;
+    box-shadow: 0 1px 3px black;
+    box-shadow: 0 1px 3px black;
+    border-collapse: separate;
+    display: none;
+}
