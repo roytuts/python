@@ -3,7 +3,7 @@ from app import app
 from db_conf import mysql
 from flask import jsonify
 from flask_jwt import JWT, jwt_required, current_identity
-from werkzeug import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(object):	
 	def __init__(self, id, username):
@@ -47,7 +47,7 @@ def identity(payload):
 		try:
 			conn = mysql.connect()
 			cursor = conn.cursor(pymysql.cursors.DictCursor)
-			cursor.execute("SELECT id, username, password FROM user WHERE id=%s", payload['identity'])
+			cursor.execute("SELECT id, username FROM user WHERE id=%s", payload['identity'])
 			row = cursor.fetchone()
 			
 			if row:
