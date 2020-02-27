@@ -24,8 +24,8 @@ while True:
 	cv2.imshow("Video", frame)
 	key = cv2.waitKey(1) & 0xFF
 
-	# if the 'q' key is pressed, stop the loop
-	if key == ord("q"):
+	# if the 'q' or ESC key is pressed, stop the loop
+	if key == ord("q") or key == 27:
 		break
  
 # close all windows
