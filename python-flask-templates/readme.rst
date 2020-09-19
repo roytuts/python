@@ -1,1 +1,0 @@
-You can read tutorial at https://www.roytuts.com/working-with-parent-and-child-templates-in-flask/
