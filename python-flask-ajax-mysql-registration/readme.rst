@@ -1,1 +1,0 @@
-You can read tutorial https://www.roytuts.com/jquery-ajax-based-registration-system-using-python-flask-mysql/
