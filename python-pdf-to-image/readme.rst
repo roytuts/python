@@ -1,1 +1,1 @@
-You can go through the tutorial https://www.roytuts.com/convert-pdf-to-image-using-python/
+You can go through the tutorial https://roytuts.com/convert-pdf-to-image-using-python/
