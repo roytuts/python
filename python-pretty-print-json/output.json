@@ -1,0 +1,14 @@
+{
+    "one": "AAA",
+    "two": [
+        "BBB",
+        "CCC"
+    ],
+    "three": {
+        "four": "DDD",
+        "five": [
+            "EEE",
+            "FFF"
+        ]
+    }
+}
