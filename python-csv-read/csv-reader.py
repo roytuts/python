@@ -68,7 +68,7 @@ string = """policyID,statecode,county,eq_site_limit,hu_site_limit,fl_site_limit,
 223488,FL,CLAY COUNTY,328500,328500,328500,328500,328500,348374.25,0,16425,0,0,30.102217,-81.707146,Residential,Wood,1
 433512,FL,CLAY COUNTY,315000,315000,315000,315000,315000,265821.57,0,15750,0,0,30.118774,-81.704613,Residential,Wood,1"""
 
-f = StringIO(scsv)
+f = StringIO(string)
 reader = csv.reader(f, delimiter=',')
 for row in reader:
     print(','.join(row))
