@@ -2,7 +2,7 @@ from app import app, mongo
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask import jsonify, flash, request
-from werkzeug import generate_password_hash, check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 
 @app.route('/add', methods=['POST'])
 def add_user():
@@ -15,7 +15,7 @@ def add_user():
 		#do not save password as a plain text
 		_hashed_password = generate_password_hash(_password)
 		# save details
-		id = mongo.db.user.insert({'name': _name, 'email': _email, 'pwd': _hashed_password})
+		id = mongo.db.user.insert_one({'name': _name, 'email': _email, 'pwd': _hashed_password})
 		resp = jsonify('User added successfully!')
 		resp.status_code = 200
 		return resp
