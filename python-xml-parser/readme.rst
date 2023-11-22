@@ -1,1 +1,1 @@
-You can read tutorial https://www.roytuts.com/parsing-xml-using-python/
+Please follow the tutorial https://roytuts.com/parsing-xml-using-python/
