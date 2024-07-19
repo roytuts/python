@@ -1,1 +1,1 @@
-You can read tutorial https://www.roytuts.com/python-blur-image-pillow/
+Please follow the tutorial https://roytuts.com/python-blur-image-pillow/
