@@ -12,7 +12,7 @@ msg.add_alternative("""\
   <body>
     <p>Hello</p>
     <p>Here is an example of sending HTML email using Python. Please click on below link:
-        <a href="https://www.roytuts.com/how-to-send-an-html-email-using-python/">
+        <a href="https://roytuts.com/how-to-send-an-html-email-using-python/">
             Send an HTML email using Python
         </a>
     </p>
