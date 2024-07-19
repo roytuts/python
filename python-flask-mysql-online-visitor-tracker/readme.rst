@@ -1,1 +1,1 @@
-You can go through the tutorial https://www.roytuts.com/python-flask-online-visitor-tracking-system/
+Please follow the tutorial https://roytuts.com/python-flask-online-visitor-tracking-system/
