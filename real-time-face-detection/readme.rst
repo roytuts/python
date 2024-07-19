@@ -1,1 +1,1 @@
-You can go through the tutorial https://www.roytuts.com/real-time-face-detection-in-webcam-using-python/
+Please follow the tutorial https://roytuts.com/real-time-face-detection-in-webcam-using-python/
