@@ -1,1 +1,1 @@
-You can read tutorial https://www.roytuts.com/see-yourself-in-webcam-using-python/
+Please follow the tutorial https://roytuts.com/see-yourself-in-webcam-using-python/
