@@ -1,1 +1,1 @@
-You can read tutorial at https://www.roytuts.com/how-to-send-a-simple-email-using-python/
+Please follow the tutorial https://roytuts.com/how-to-send-a-simple-email-using-python/
