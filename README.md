@@ -1,2 +1,3 @@
 # python
-This repository provides code examples on Python programming. 
+This repository provides genuine code examples for Python programming. 
+You can learn and excel in python using this repository!
